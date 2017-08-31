@@ -403,6 +403,7 @@ extern const char *__progname;
 #if defined(__GLIBC__) || defined(__linux__)
 
 #include <endian.h>
+#include <sys/param.h>
 
 #define	ELFTC_BYTE_ORDER			__BYTE_ORDER
 #define	ELFTC_BYTE_ORDER_LITTLE_ENDIAN		__LITTLE_ENDIAN
