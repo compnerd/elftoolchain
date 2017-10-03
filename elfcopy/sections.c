@@ -37,10 +37,10 @@
 
 #if defined(_WIN32)
 #include <Shlwapi.h>
-char *basename(char *path) {
+char *basename(const char *path) {
   return PathFindFileNameA(path);
 }
-#endif
+#endif /* _WIN32 */
 
 ELFTC_VCSID("$Id$");
 
@@ -180,7 +180,7 @@ static void
 check_section_rename(struct elfcopy *ecp, struct section *s)
 {
 	struct sec_action *sac;
-	char *prefix;
+	const char *prefix;
 	size_t namelen;
 
 	if (s->pseudo)
@@ -1557,7 +1557,7 @@ add_gnu_debuglink(struct elfcopy *ecp)
 	free(buf);
 
 	/* Calculate section size and the offset to store crc checksum. */
-	if ((fnbase = basename(ecp->debuglink)) == NULL)
+	if ((fnbase = basename((char *) ecp->debuglink)) == NULL)
 		err(EXIT_FAILURE, "basename failed");
 	crc_off = roundup(strlen(fnbase) + 1, 4);
 	sa->size = crc_off + 4;

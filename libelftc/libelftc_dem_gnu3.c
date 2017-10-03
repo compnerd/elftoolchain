@@ -37,6 +37,27 @@
 
 #include "_libelftc.h"
 
+#if defined(_WIN32)
+int asprintf(char **strp, const char *fmt, ...) {
+  va_list args;
+	char *buffer = NULL;
+	size_t length = 0;
+
+	va_start(args, fmt);
+	length = vsnprintf(NULL, 0, fmt, args);
+	va_end(args);
+
+	if ((buffer = malloc(length + 1))) {
+  	va_start(args, fmt);
+		length = vsnprintf(buffer, length + 1, fmt, args);
+		va_end(args);
+	}
+
+  *strp = buffer;
+	return length;
+}
+#endif
+
 ELFTC_VCSID("$Id$");
 
 /**

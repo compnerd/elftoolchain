@@ -1074,7 +1074,7 @@ _libelf_write_elf(Elf *e, off_t newsize, struct _Elf_Extent_List *extents)
 	if ((e->e_flags & LIBELF_F_SPECIAL_FILE) == 0) {
 #if defined(_WIN32)
 		FILE_END_OF_FILE_INFO info = {.EndOfFile = 0};
-		if (!SetFileInformationByHandle(_get_osfhandle(e->e_fd),
+		if (!SetFileInformationByHandle((HANDLE) _get_osfhandle(e->e_fd),
 						FileEndOfFileInfo, &info,
 						sizeof(info))) {
 			LIBELF_SET_ERROR(IO, errno);

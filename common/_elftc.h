@@ -495,6 +495,7 @@ extern const char *__progname;
 
 #if defined(_WIN32)
 
+#include <winsock.h>
 #define	htobe32(x)	htonl(x)
 
 #define	lstat		stat
@@ -509,7 +510,7 @@ extern const char *__progname;
 
 #define	roundup(x, y)	((((x) + ((y)-1)) / (y)) * (y))
 #define	roundup2	roundup
-#endif
+#endif /* _WIN32 */
 
 #if !defined(_WIN32)
 #define O_BINARY 0
