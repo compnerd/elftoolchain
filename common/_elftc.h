@@ -402,6 +402,7 @@ extern const char *__progname;
 
 #include <osreldate.h>
 #include <sys/endian.h>
+#include <sys/param.h>
 
 #define	ELFTC_BYTE_ORDER			_BYTE_ORDER
 #define	ELFTC_BYTE_ORDER_LITTLE_ENDIAN		_LITTLE_ENDIAN
@@ -439,6 +440,7 @@ extern const char *__progname;
 
 #include <osreldate.h>
 #include <sys/endian.h>
+#include <sys/param.h>
 
 #define	ELFTC_BYTE_ORDER			_BYTE_ORDER
 #define	ELFTC_BYTE_ORDER_LITTLE_ENDIAN		_LITTLE_ENDIAN
@@ -495,7 +497,8 @@ extern const char *__progname;
 
 #if defined(_WIN32)
 
-#include <winsock.h>
+#include <Winsock2.h>
+
 #define	htobe32(x)	htonl(x)
 
 #define	lstat		stat
